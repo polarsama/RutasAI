@@ -217,3 +217,134 @@ class SistemaDeTransporteIA:
             "tiempos_tramos": tiempos_tramos_formato,
             "detalles_estaciones": [self.estaciones[est] for est in ruta_q_learning]
         }
+class QLearningRouter:
+    def __init__(self, grafo: nx.DiGraph, alpha=0.1, gamma=0.9, epsilon=0.1):
+        """
+        Implementa Q-learning para optimización de rutas.
+        
+        Args:
+            grafo (nx.DiGraph): Grafo de transporte.
+        """
+        self.grafo = grafo
+        self.alpha = alpha  # Tasa de aprendizaje
+        self.gamma = gamma  # Factor de descuento
+        self.epsilon = epsilon  # Exploración vs explotación
+        
+        # Inicializar tabla Q
+        self.q_table = {}
+        self._inicializar_q_table()
+
+    def _inicializar_q_table(self):
+        """
+        Inicializa la tabla Q con valores aleatorios.
+        """
+        for nodo in self.grafo.nodes():
+            for vecino in self.grafo.neighbors(nodo):
+                if (nodo, vecino) not in self.q_table:
+                    self.q_table[(nodo, vecino)] = np.random.uniform(0, 1)
+
+    def encontrar_ruta(self, origen: str, destino: str) -> List[str]:
+        """
+        Encuentra la ruta óptima usando Q-learning.
+        
+        Args:
+            origen (str): Nodo de origen.
+            destino (str): Nodo de destino.
+        
+        Returns:
+            List[str]: Ruta encontrada.
+        """
+        ruta_actual = [origen]
+        nodo_actual = origen
+        
+        # Número máximo de iteraciones para evitar ciclos infinitos
+        max_iteraciones = len(self.grafo.nodes) * 2
+        iteraciones = 0
+        
+        while nodo_actual != destino and iteraciones < max_iteraciones:
+            # Exploración vs explotación
+            if np.random.random() < self.epsilon:
+                # Exploración: elegir un vecino aleatorio
+                vecinos = list(self.grafo.neighbors(nodo_actual))
+                if not vecinos:
+                    break
+                siguiente_nodo = np.random.choice(vecinos)
+            else:
+                # Explotación: elegir el mejor vecino según Q-table
+                vecinos = list(self.grafo.neighbors(nodo_actual))
+                if not vecinos:
+                    break
+                
+                valores_q = [self.q_table.get((nodo_actual, vecino), 0) for vecino in vecinos]
+                siguiente_nodo = vecinos[np.argmax(valores_q)]
+            
+            ruta_actual.append(siguiente_nodo)
+            nodo_actual = siguiente_nodo
+            iteraciones += 1
+        
+        return ruta_actual
+    
+def convertir_numpy_a_json(obj):
+    """
+    Convierte objetos numpy a tipos de datos nativos de Python.
+    
+    Args:
+        obj: Objeto a convertir
+    
+    Returns:
+        Objeto convertido a tipo nativo de Python
+    """
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, np.float32):
+        return float(obj)
+    elif isinstance(obj, np.int64):
+        return int(obj)
+    elif isinstance(obj, dict):
+        return {k: convertir_numpy_a_json(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convertir_numpy_a_json(v) for v in obj]
+    return obj
+
+def main():
+    # Iniciar medición de tiempo
+    inicio = time.time()
+    
+    print("🚉 Iniciando Sistema de Transporte con IA...")
+    print("Cargando datos y configurando modelo...")
+
+    # Crear instancia del sistema de transporte con IA
+    sistema = SistemaDeTransporteIA('datos.json')
+    
+    # Generar todas las combinaciones de rutas posibles
+    ids_estaciones = list(sistema.estaciones.keys())
+    rutas_ejemplo = list(itertools.permutations(ids_estaciones, 2))
+    
+    print(f"Total de rutas a calcular: {len(rutas_ejemplo)}")
+    
+    resultados = []
+    for i, (origen, destino) in enumerate(rutas_ejemplo, 1):
+        if origen != destino:  # Evitar rutas del mismo origen y destino
+            # Mostrar progreso
+            print(f"Calculando ruta {i}/{len(rutas_ejemplo)}: {origen} → {destino}")
+            
+            ruta = sistema.encontrar_ruta_ia(origen, destino)
+            resultados.append(ruta)
+    
+    # Convertir resultados a tipos JSON serializables
+    resultados_json = convertir_numpy_a_json(resultados)
+    
+    # Guardar resultados en un archivo JSON
+    with open('Resultados.json', 'w', encoding='utf-8') as f:
+        json.dump(resultados_json, f, ensure_ascii=False, indent=2)
+    
+    # Calcular tiempo de ejecución
+    fin = time.time()
+    tiempo_ejecucion = fin - inicio
+    
+    print(f"\n✅ Proceso completado.")
+    print(f"🕒 Tiempo total de ejecución: {tiempo_ejecucion:.2f} segundos")
+    print(f"📄 Resultados guardados en 'Resultados.json'")
+
+if __name__ == "__main__":
+    main()
