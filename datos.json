@@ -1,0 +1,344 @@
+{
+    "estaciones": [
+      {
+        "id": "EST001",
+        "nombre": "Terminal Central",
+        "latitud": 4.6097,
+        "longitud": -74.0817,
+        "lineas": ["L1", "L2", "L4"],
+        "servicios": ["baños", "wifi", "accesibilidad"]
+      },
+      {
+        "id": "EST002",
+        "nombre": "Plaza Mayor",
+        "latitud": 4.6123,
+        "longitud": -74.0724,
+        "lineas": ["L1"],
+        "servicios": ["baños", "wifi"]
+      },
+      {
+        "id": "EST003",
+        "nombre": "Parque Industrial",
+        "latitud": 4.6210,
+        "longitud": -74.0690,
+        "lineas": ["L1", "L3"],
+        "servicios": ["baños", "accesibilidad"]
+      },
+      {
+        "id": "EST004",
+        "nombre": "Universidad Nacional",
+        "latitud": 4.6341,
+        "longitud": -74.0830,
+        "lineas": ["L2"],
+        "servicios": ["baños", "wifi", "accesibilidad"]
+      },
+      {
+        "id": "EST005",
+        "nombre": "Centro Comercial",
+        "latitud": 4.6280,
+        "longitud": -74.0650,
+        "lineas": ["L2", "L3"],
+        "servicios": ["baños", "wifi", "accesibilidad"]
+      },
+      {
+        "id": "EST006",
+        "nombre": "Hospital Central",
+        "latitud": 4.6185,
+        "longitud": -74.0770,
+        "lineas": ["L1", "L4"],
+        "servicios": ["baños", "accesibilidad", "primeros auxilios"]
+      },
+      {
+        "id": "EST007",
+        "nombre": "Estadio Nacional",
+        "latitud": 4.6470,
+        "longitud": -74.0770,
+        "lineas": ["L2"],
+        "servicios": ["baños"]
+      },
+      {
+        "id": "EST008",
+        "nombre": "Zona Industrial",
+        "latitud": 4.6390,
+        "longitud": -74.0650,
+        "lineas": ["L3"],
+        "servicios": ["baños"]
+      },
+      {
+        "id": "EST009",
+        "nombre": "Barrio Residencial",
+        "latitud": 4.6150,
+        "longitud": -74.0930,
+        "lineas": ["L4"],
+        "servicios": ["baños", "wifi"]
+      },
+      {
+        "id": "EST010",
+        "nombre": "Aeropuerto",
+        "latitud": 4.6550,
+        "longitud": -74.0900,
+        "lineas": ["L2", "L5"],
+        "servicios": ["baños", "wifi", "accesibilidad", "información turística"]
+      },
+      {
+        "id": "EST011",
+        "nombre": "Zona Financiera",
+        "latitud": 4.6250,
+        "longitud": -74.0750,
+        "lineas": ["L3", "L5"],
+        "servicios": ["baños", "wifi", "cajeros"]
+      },
+      {
+        "id": "EST012",
+        "nombre": "Parque Central",
+        "latitud": 4.6200,
+        "longitud": -74.0830,
+        "lineas": ["L4", "L5"],
+        "servicios": ["baños", "wifi", "accesibilidad"]
+      },
+      {
+        "id": "EST013",
+        "nombre": "Museo Nacional",
+        "latitud": 4.6150,
+        "longitud": -74.0695,
+        "lineas": ["L1", "L5"],
+        "servicios": ["baños", "wifi", "información turística"]
+      },
+      {
+        "id": "EST014",
+        "nombre": "Terminal Sur",
+        "latitud": 4.5950,
+        "longitud": -74.0830,
+        "lineas": ["L1", "L4"],
+        "servicios": ["baños", "wifi", "accesibilidad"]
+      },
+      {
+        "id": "EST015",
+        "nombre": "Biblioteca Municipal",
+        "latitud": 4.6300,
+        "longitud": -74.0680,
+        "lineas": ["L3", "L5"],
+        "servicios": ["baños", "wifi", "accesibilidad"]
+      }
+    ],
+    "conexiones": [
+      {
+        "origen": "EST001",
+        "destino": "EST002",
+        "linea": "L1",
+        "tiempo": 5,
+        "distancia": 1.2,
+        "activa": true,
+        "horario": {
+          "lunes": {"inicio": [5, 0], "fin": [23, 0]},
+          "martes": {"inicio": [5, 0], "fin": [23, 0]},
+          "miercoles": {"inicio": [5, 0], "fin": [23, 0]},
+          "jueves": {"inicio": [5, 0], "fin": [23, 0]},
+          "viernes": {"inicio": [5, 0], "fin": [23, 30]},
+          "sabado": {"inicio": [6, 0], "fin": [22, 0]},
+          "domingo": {"inicio": [7, 0], "fin": [21, 0]}
+        }
+      },
+      {
+        "origen": "EST002",
+        "destino": "EST003",
+        "linea": "L1",
+        "tiempo": 7,
+        "distancia": 1.5,
+        "activa": true
+      },
+      {
+        "origen": "EST003",
+        "destino": "EST013",
+        "linea": "L1",
+        "tiempo": 4,
+        "distancia": 0.9,
+        "activa": true
+      },
+      {
+        "origen": "EST013",
+        "destino": "EST006",
+        "linea": "L1",
+        "tiempo": 6,
+        "distancia": 1.3,
+        "activa": true
+      },
+      {
+        "origen": "EST006",
+        "destino": "EST014",
+        "linea": "L1",
+        "tiempo": 9,
+        "distancia": 2.2,
+        "activa": true
+      },
+      {
+        "origen": "EST001",
+        "destino": "EST004",
+        "linea": "L2",
+        "tiempo": 8,
+        "distancia": 1.8,
+        "activa": true
+      },
+      {
+        "origen": "EST004",
+        "destino": "EST007",
+        "linea": "L2",
+        "tiempo": 6,
+        "distancia": 1.4,
+        "activa": true
+      },
+      {
+        "origen": "EST007",
+        "destino": "EST010",
+        "linea": "L2",
+        "tiempo": 10,
+        "distancia": 2.5,
+        "activa": true
+      },
+      {
+        "origen": "EST001",
+        "destino": "EST005",
+        "linea": "L2",
+        "tiempo": 7,
+        "distancia": 1.6,
+        "activa": true
+      },
+      {
+        "origen": "EST003",
+        "destino": "EST005",
+        "linea": "L3",
+        "tiempo": 5,
+        "distancia": 1.0,
+        "activa": true
+      },
+      {
+        "origen": "EST005",
+        "destino": "EST011",
+        "linea": "L3",
+        "tiempo": 4,
+        "distancia": 0.8,
+        "activa": true
+      },
+      {
+        "origen": "EST011",
+        "destino": "EST015",
+        "linea": "L3",
+        "tiempo": 3,
+        "distancia": 0.7,
+        "activa": true
+      },
+      {
+        "origen": "EST005",
+        "destino": "EST008",
+        "linea": "L3",
+        "tiempo": 7,
+        "distancia": 1.7,
+        "activa": true
+      },
+      {
+        "origen": "EST001",
+        "destino": "EST006",
+        "linea": "L4",
+        "tiempo": 4,
+        "distancia": 0.8,
+        "activa": true
+      },
+      {
+        "origen": "EST006",
+        "destino": "EST009",
+        "linea": "L4",
+        "tiempo": 6,
+        "distancia": 1.3,
+        "activa": true
+      },
+      {
+        "origen": "EST009",
+        "destino": "EST012",
+        "linea": "L4",
+        "tiempo": 8,
+        "distancia": 1.9,
+        "activa": true
+      },
+      {
+        "origen": "EST012",
+        "destino": "EST014",
+        "linea": "L4",
+        "tiempo": 9,
+        "distancia": 2.1,
+        "activa": true
+      },
+      {
+        "origen": "EST010",
+        "destino": "EST011",
+        "linea": "L5",
+        "tiempo": 12,
+        "distancia": 2.8,
+        "activa": true
+      },
+      {
+        "origen": "EST011",
+        "destino": "EST013",
+        "linea": "L5",
+        "tiempo": 5,
+        "distancia": 1.1,
+        "activa": true
+      },
+      {
+        "origen": "EST013",
+        "destino": "EST012",
+        "linea": "L5",
+        "tiempo": 4,
+        "distancia": 0.9,
+        "activa": true
+      },
+      {
+        "origen": "EST011",
+        "destino": "EST015",
+        "linea": "L5",
+        "tiempo": 3,
+        "distancia": 0.6,
+        "activa": true
+      }
+    ],
+    "reglas": [
+      {
+        "tipo": "cierre_estacion",
+        "estacion_id": "EST008",
+        "fecha_inicio": "2023-06-01",
+        "fecha_fin": "2023-06-15",
+        "motivo": "Mantenimiento programado"
+      },
+      {
+        "tipo": "congestion",
+        "linea": "L1",
+        "hora_inicio": [7, 0],
+        "hora_fin": [9, 0],
+        "factor": 1.8,
+        "dias": ["lunes", "martes", "miercoles", "jueves", "viernes"]
+      },
+      {
+        "tipo": "congestion",
+        "linea": "L2",
+        "hora_inicio": [17, 0],
+        "hora_fin": [19, 30],
+        "factor": 1.5,
+        "dias": ["lunes", "martes", "miercoles", "jueves", "viernes"]
+      },
+      {
+        "tipo": "mantenimiento_tramo",
+        "origen": "EST005",
+        "destino": "EST011",
+        "fecha_inicio": "2023-05-15",
+        "fecha_fin": "2023-05-20",
+        "motivo": "Reparación de vías"
+      },
+      {
+        "tipo": "cierre_linea",
+        "linea": "L5",
+        "fecha_inicio": "2023-07-10",
+        "fecha_fin": "2023-07-11",
+        "horario": {"inicio": [0, 0], "fin": [4, 0]},
+        "motivo": "Actualización de sistemas"
+      }
+    ]
+  }
